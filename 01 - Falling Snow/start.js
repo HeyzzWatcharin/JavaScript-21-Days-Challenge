@@ -1,6 +1,6 @@
 (() => {
   
-  function random(min,max){
+  function random(min,max){ //randow ค่า
     return Math.floor(Math.random()*(max-min+1)) + min; 
     //floor คือการปัดเศษลง
   }
@@ -11,9 +11,9 @@
     canvas.height = window.innerHeight; //set Height snow == window size
     
     return {
-      canvas,
-      canvasContext: canvas.getContext('2d'),
-      numberOfSnowBalls: 250
+      canvas, 
+      canvasContext: canvas.getContext('2d'), //วาด 2d  
+      numberOfSnowBalls: 250 
     }
   }
 
@@ -24,8 +24,8 @@ function createSnowBalls(canvas,numberOfSnowBalls){
       y: random(0,canvas.height),
       opacity : random(0.5,1),
       radius : random(2,4),
-      speedX: random(-5,0),
-      speedY: random(1,3)
+      speedX: random(1,0), //กำหนดความเร็วแกน x
+      speedY: random(1,2)
     }
   })
 }
@@ -34,7 +34,7 @@ function movesnowball(canvas,snowBall){
   snowBall.x += snowBall.speedX;
   snowBall.y += snowBall.speedY;
 
-  if (snowBall.x > canvas.width) {
+  if (snowBall.x > canvas.width) {  //เช็คว่าตกขอบหน้าจอไหมถ้าตก ก็ให้ทำตามเงื่อนไข บลาๆๆ
     snowBall.x = 0;
   } else if (snowBall.x < 0) {
     snowBall.x = canvas.width;

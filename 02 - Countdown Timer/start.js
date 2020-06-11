@@ -11,8 +11,8 @@
 
   function countDown(){
     const now = new Date().getTime(); //ดึงเวลาปัจจุบันออกมา
-    const newYear = new Date('June 2, 2020 00:00:00').getTime();
-    const unixTimeLeft = newYear - now;
+    const purposeday = new Date('June 2, 2020 00:00:00').getTime();
+    const unixTimeLeft = purposeday - now;
     setelment('days', Math.floor(unixTimeLeft / day));
     setelment('hours', Math.floor(unixTimeLeft % day / hour));
     setelment('minutes', Math.floor(unixTimeLeft % hour / min));
