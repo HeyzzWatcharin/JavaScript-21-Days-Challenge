@@ -1,38 +1,37 @@
 (() => {
-  // เริ่มเขียนโค้ด
+  let draggingElem;
 
-  let dragingElem;
-
-  function ondragstart(){
-    dragingElem = this;
+  function onDragStart() {
+    draggingElem = this;
   }
 
-  function onDrop(){
-    this.append(dragingElem);
-    dragingElem = null;
+  function onDrop() {
+    //console.log('Drop');
+    this.append(draggingElem);
+    draggingElem = null;
   }
 
-  function onDragOver(event){
-    event.preventDefault(); //พอเกิด dragover จะ ยกเลิก Behave beover ตัว drag ปกติออกไป
-  }
-
-  function onDragEnter(event){
+  function onDragOver(event) {
     event.preventDefault();
   }
 
-  function run(){
-    const taskElems =Array.from(document.querySelectorAll('.task')) ; //ดึงทั้งหมดที่มีคลาส task
-    const dropZoneElems = Array.from(document.querySelectorAll('.drop-zone'))
-    
-    taskElems.forEach((taskElems) => {
-      taskElems.addEventListener('dragstart',ondragstart)
-    })
+  function onDragEnter(event) {
+    event.preventDefault();
+  }
 
-    dropZoneElems.forEach((dropZoneElems) => {
-      dropZoneElems.addEventListener('drop',onDrop) //เมื่อเกิด Event 'drop' นี้จะคอล ondrop
-      dropZoneElems.addEventListener('dragover',onDragOver);
-      dropZoneElems.addEventListener('dragenter',onDragEnter)
-    })
+  function run() {
+    const taskElems = Array.from(document.querySelectorAll('.task'));
+    const dropZoneElems = Array.from(document.querySelectorAll('.drop-zone'));
+
+    taskElems.forEach((taskElem) => {
+      taskElem.addEventListener('dragstart', onDragStart);
+    });
+
+    dropZoneElems.forEach((dropZoneElem) => {
+      dropZoneElem.addEventListener('drop', onDrop);
+      dropZoneElem.addEventListener('dragover', onDragOver);
+      dropZoneElem.addEventListener('dragenter', onDragEnter);
+    });
   }
 
   run();
